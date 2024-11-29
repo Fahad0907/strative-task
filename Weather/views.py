@@ -81,15 +81,10 @@ class AverageTemperatureApi(APIView):
 
 class TravelRecommendationApi(APIView):
     permission_classes = [IsAuthenticated]
-    
+
     def get_temperature_at_2pm(self, latitude, longitude, date):
         weather_url = "https://api.open-meteo.com/v1/forecast"
-        valid_start_date = datetime(2016, 1, 1)
-        valid_end_date = datetime(2024, 12, 13)
-        input_date = datetime.strptime(date, "%Y-%m-%d")
         
-        if input_date < valid_start_date or input_date > valid_end_date:
-            return {"error": "The provided date is out of the allowed range. Please use a date between 2016-01-01 and 2024-12-13."}
         params = {
             "latitude": latitude,
             "longitude": longitude,
